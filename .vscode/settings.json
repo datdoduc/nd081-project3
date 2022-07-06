@@ -32,7 +32,7 @@
     ],
     "appService.defaultWebAppToDeploy": "/subscriptions/23a46325-c9d7-47c7-bbf4-3ec8b42f5939/microsoft.web/sites/subscriptions/23a46325-c9d7-47c7-bbf4-3ec8b42f5939/resourceGroups/udacity-project3/providers/Microsoft.Web/sites/webapp-project3",
     "appService.deploySubpath": "web",
-    "azureFunctions.deploySubpath": ".",
+    "azureFunctions.deploySubpath": "function",
     "azureFunctions.scmDoBuildDuringDeployment": true,
     "azureFunctions.pythonVenv": ".venv",
     "azureFunctions.projectLanguage": "Python",

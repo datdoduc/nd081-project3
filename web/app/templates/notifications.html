@@ -42,10 +42,10 @@
                     <tbody>
                         {% for notification in notifications %}
                             <tr>
-                                <td>Notification#{{ notification.id }}</td>
+                                <td>{{ notification.id }}</td>
                                 <td>{{ notification.status }}</td>
                                 <td>{{ notification.submitted_date.strftime('%d-%m-%Y %H:%M %p') if notification.submitted_date else "N/A" }}</td>
-                                <td>{{ notification.completed_date.strftime('%d-%m-%Y %H:%M %p') if  notification.completed_date  else "N/A" }}</td>
+                                <td>{{ notification.completed_date.strftime('%d-%m-%Y %H:%M %p') if notification.completed_date else "N/A" }}</td>
                                 <td>{{ notification.message }}</td>
                             </tr>
                         {% endfor %}
