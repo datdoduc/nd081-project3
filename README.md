@@ -63,9 +63,14 @@ Complete a month cost analysis of each Azure resource to give an estimate total 
 
 | Azure Resource | Service Tier | Monthly Cost |
 | ------------ | ------------ | ------------ |
-| *Azure Postgres Database* |     |              |
-| *Azure Service Bus*   |         |              |
-| ...                   |         |              |
+| *Azure Postgres Database* | Basic, 1 vCore(s), 5 GB | 38.56 USD |
+| *Azure Service Bus* | Basic | 0.05 USD |
+| *Azure App Service* | B1: Basic | 13.87 USD |
+| *Azure Functions* | Consumption, Free Grant (Per Month): 400,000 GB-s and 1 million executions | ~0 USD |
 
 ## Architecture Explanation
-This is a placeholder section where you can provide an explanation and reasoning for your architecture selection for both the Azure Web App and Azure Function.
+- Migrate the PostgreSQL database to an Azure Postgres database with Basic pricing tier, 1 vCore(s), 5 GB since the data is not too much. Get rid of on-premise SQL server. The monthly cost is 13.87$ but we do not have to care about the hardware and management cost.
+- Migrate the current web app to Azure App Service so that it will be scalable to handle user load at peak time. I choose Basic tier to get custom domain and able to scale up to 3 instances with monthly cost is just 13.87$.
+- The Azure Function ServiceBusQueueFunc handle the time consumption task that looping through all attendees to send notification emails. So that it prevent the HTTP timeout excetion in web app when there is too many attendees. 
+The Azure Functions go with Consumption pricing tier, it got Free Grant per month of 400,000 GB-s and 1 million executions. So if the admin just sends out < 1 million notifications/month and data transfer < 400,000 GB-s, it is basically free to use azure function.
+- Azure Service Bus Queue was used to communicate between the web and the function. When admin send an notification to attendees, web app send a message to service bus queue client contain the notification ID. The Azure function will be trigger by this service bus queue message and do the time consumption task. Monthly cost of Azure Service Bus is very cheap for Basic tier (0.05$), which is enough to run this application.
