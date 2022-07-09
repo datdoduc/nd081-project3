@@ -74,3 +74,6 @@ Complete a month cost analysis of each Azure resource to give an estimate total 
 - The Azure Function ServiceBusQueueFunc handle the time consumption task that looping through all attendees to send notification emails. So that it prevent the HTTP timeout excetion in web app when there is too many attendees. 
 The Azure Functions go with Consumption pricing tier, it got Free Grant per month of 400,000 GB-s and 1 million executions. So if the admin just sends out < 1 million notifications/month and data transfer < 400,000 GB-s, it is basically free to use azure function.
 - Azure Service Bus Queue was used to communicate between the web and the function. When admin send an notification to attendees, web app send a message to service bus queue client contain the notification ID. The Azure function will be trigger by this service bus queue message and do the time consumption task. Monthly cost of Azure Service Bus is very cheap for Basic tier (0.05$), which is enough to run this application.
+
+## Reviewer submittion
+![image](https://user-images.githubusercontent.com/85634388/178095019-3336857c-6bd4-4a49-ac48-b6d925ce5b0b.png)
